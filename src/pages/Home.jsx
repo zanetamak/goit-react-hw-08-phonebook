@@ -1,18 +1,18 @@
-import css from './HomePage.module.css';
+import { Box, Heading } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 
 export default function HomePage() {
   return (
-    <div className={css.container}>
+    <Box p="4">
       <Helmet>
         <title>Contacts manager</title>
       </Helmet>
-      <h1 className={css.title}>
-             Task manager welcome page{' '}
+      <Heading as="h1" fontSize="xl" mb="4">
+        Contacts manager welcome page{' '}
         <span role="img" aria-label="Greeting icon">
           💁‍♀️
         </span>
-      </h1>
-    </div>
+      </Heading>
+    </Box>
   );
 }
