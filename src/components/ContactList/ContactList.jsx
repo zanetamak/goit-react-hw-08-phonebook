@@ -13,8 +13,8 @@ import {
   selectFilter,
   selectContacts,
   selectIsLoading,
-} from 'redux/contacts/selectors';
-import { deleteContact, fetchContacts } from 'redux/contacts/operations';
+} from '../../redux/contacts/selectors';
+import { deleteContact, fetchContacts } from '../../redux/contacts/operations';
 
 const ContactList = () => {
   const dispatch = useDispatch();

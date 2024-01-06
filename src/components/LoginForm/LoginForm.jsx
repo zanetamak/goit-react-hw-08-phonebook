@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/operations';
+import { logIn } from '../../redux/auth/operations';
 import {
   Box,
   FormControl,
@@ -25,17 +25,17 @@ export const LoginForm = () => {
   };
 
   return (
-    <Box maxW="400px" mx="auto" mt="8">
+    <Box maxW="300px" mx="auto" mt="10">
       <form onSubmit={handleSubmit} autoComplete="off">
-        <FormControl mb="4">
+        <FormControl mb="10">
           <FormLabel>Email</FormLabel>
           <Input type="email" name="email" />
         </FormControl>
-        <FormControl mb="4">
+        <FormControl mb="10">
           <FormLabel>Password</FormLabel>
           <Input type="password" name="password" />
         </FormControl>
-        <Button type="submit" colorScheme="teal">
+        <Button type="submit" colorScheme="pink">
           Log In
         </Button>
       </form>

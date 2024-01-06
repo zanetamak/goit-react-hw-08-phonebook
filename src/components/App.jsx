@@ -13,7 +13,7 @@ const RegisterPage = lazy(() => import('../pages/Register'));
 const LoginPage = lazy(() => import('../pages/Login'));
 const ContactPage = lazy(() => import('../pages/Contacts'));
 
-export const App = () => {
+const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
@@ -57,3 +57,4 @@ export const App = () => {
 //  Lazy pozwala na opóźnione ładowanie komponentów. Możesz użyć do dynamicznego importowania 
 // komponentów = te komponenty będą pobrane dopiero w momencie, gdy zostaną użyte.
 
+export default App

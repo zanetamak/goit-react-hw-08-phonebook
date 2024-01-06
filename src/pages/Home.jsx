@@ -7,7 +7,7 @@ export default function HomePage() {
       <Helmet>
         <title>Contacts manager</title>
       </Helmet>
-      <Heading as="h1" fontSize="xl" mb="4">
+      <Heading as="h2" fontSize="xl" mb="4">
         Contacts manager welcome page{' '}
         <span role="img" aria-label="Greeting icon">
           💁‍♀️

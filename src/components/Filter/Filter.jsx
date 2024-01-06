@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setFilter } from 'redux/actions';
+import { setFilter } from '../../redux/contacts/contactsSlice';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 const Filter = () => {

@@ -5,7 +5,6 @@ import {
   FormLabel,
   Input,
   Button,
-  Heading,
 } from '@chakra-ui/react';
 
 export const RegisterForm = () => {
@@ -30,10 +29,9 @@ export const RegisterForm = () => {
   };
 
   return (
-    <Box maxW="400px" mx="auto" mt="8">
-      <Heading mb="4">Register</Heading>
+    <Box maxW="300px" mx="auto" mt="10">
       <form onSubmit={handleSubmit}>
-        <FormControl mb="4">
+        <FormControl mb="10">
           <FormLabel>Username</FormLabel>
           <Input
             type="text"
@@ -42,16 +40,17 @@ export const RegisterForm = () => {
             onChange={handleChange}
           />
         </FormControl>
-        <FormControl mb="4">
+        <FormControl mb="10">
           <FormLabel>Email</FormLabel>
           <Input
             type="email"
             name="email"
+                  width="100%"
             value={formData.email}
             onChange={handleChange}
           />
         </FormControl>
-        <FormControl mb="4">
+        <FormControl mb="10">
           <FormLabel>Password</FormLabel>
           <Input
             type="password"
@@ -60,7 +59,7 @@ export const RegisterForm = () => {
             onChange={handleChange}
           />
         </FormControl>
-        <Button type="submit" colorScheme="teal">
+        <Button type="submit" colorScheme="pink">
           Register
         </Button>
       </form>
