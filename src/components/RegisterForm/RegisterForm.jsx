@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Box,
   FormControl,
@@ -6,8 +7,11 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
+import { register } from '../../redux/auth/operations';
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
+  
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -24,8 +28,7 @@ export const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // W tym miejscu możesz dodać logikę do przetwarzania danych rejestracyjnych
-    console.log('Submitted data:', formData);
+    dispatch(register(formData));  // Wywołanie rejestracji z użyciem funkcji register z Redux
   };
 
   return (
@@ -45,7 +48,7 @@ export const RegisterForm = () => {
           <Input
             type="email"
             name="email"
-                  width="100%"
+            width="100%"
             value={formData.email}
             onChange={handleChange}
           />
@@ -59,11 +62,10 @@ export const RegisterForm = () => {
             onChange={handleChange}
           />
         </FormControl>
-        <Button type="submit" colorScheme="pink">
+        <Button type="submit">
           Register
         </Button>
       </form>
     </Box>
   );
 };
-

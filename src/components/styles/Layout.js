@@ -2,10 +2,11 @@ import { ChakraProvider, Container } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 import { AppBar } from '../AppBar/AppBar';
 import { Suspense } from 'react';
+import theme from './Theme';
 
 export const Layout = () => {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
           <Container
               position="relative"
               maxW="960px"

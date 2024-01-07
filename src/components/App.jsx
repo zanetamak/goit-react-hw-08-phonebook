@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 import { refreshUser } from '../redux/auth/operations';
 
-import { Layout } from './styles/Layout';
+import { Layout } from './Styles/Layout';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { PrivateRoute } from '../components/PrivateRoute';
 import { RestrictedRoute } from '../components/RestrictedRoute';

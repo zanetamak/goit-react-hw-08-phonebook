@@ -10,7 +10,7 @@ export default function Register() {
         <title>Registration</title>
       </Helmet>
       <Box padding="6" mt="10">
-        <Heading size="xl">Register</Heading>
+        <Heading>Register</Heading>
         <RegisterForm />
         Do you have account?{' '}
         <Link to="/login" style={{ textDecoration: 'underline' }}>

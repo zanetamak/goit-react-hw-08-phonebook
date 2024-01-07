@@ -14,6 +14,7 @@ export const AppBar = () => {
       </Box>
       <Spacer />
       <Box>{isLoggedIn ? <UserMenu /> : <AuthNav />}</Box>
+      
     </Flex>
   );
 };
