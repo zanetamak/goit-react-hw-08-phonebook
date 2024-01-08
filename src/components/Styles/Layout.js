@@ -1,24 +1,28 @@
-import { ChakraProvider, Container } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
-import { AppBar } from '../AppBar/AppBar';
 import { Suspense } from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
+
+import { AppBar } from '../AppBar/AppBar';
+
 import theme from './Theme';
 
 export const Layout = () => {
   return (
     <ChakraProvider theme={theme}>
-          <Container
-              position="relative"
-              maxW="960px"
-              mx="auto"
-              px="16px">
-        <AppBar />
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </Container>
+      <div position="relative">
+        <div
+          style={{
+            maxWidth: 1800,
+            margin: '0 auto',
+            padding: '50px 50px',
+          }}
+        >
+          <AppBar />
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
+        </div>
+      </div>
     </ChakraProvider>
   );
 };
-
-// czy tu ma być chakra ? I plik js czy jsx? 

@@ -14,14 +14,14 @@ const Filter = () => {
   };
 
   return (
-    <FormControl mb="4">
+    <FormControl mt="10">
       <FormLabel>Find contacts by name or phone number</FormLabel>
       <Input
         type="text"
         name="filter"
         value={filter} // Używanie filtra z Redux za pomocą useSelector
         onChange={onChange}
-        placeholder="Enter name or phone number"
+
       />
     </FormControl>
   );
