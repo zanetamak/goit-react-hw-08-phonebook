@@ -1,20 +1,21 @@
 import { Container, Box, Heading } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { RegisterForm } from '../components/RegisterForm/RegisterForm'
+import { RegisterForm } from '../components/RegisterForm/RegisterForm';
+import { ChevronRightIcon, ChevronLeftIcon } from '@chakra-ui/icons';
 
 export default function Register() {
   return (
-    <Container maxW="2xl" centerContent>
+    <Container maxW="xl" centerContent>
       <Helmet>
         <title>Registration</title>
       </Helmet>
       <Box padding="6" mt="10">
-        <Heading size="xl">Register</Heading>
+        <Heading size="xl">Create a new account</Heading>
         <RegisterForm />
-        Do you have account?{' '}
-        <Link to="/login" style={{ textDecoration: 'underline' }}>
-          Log in
+        Already have an account?{' '}
+        <Link to="/login" style={{ textDecoration: 'underline', color: 'red' }}>
+                 <ChevronRightIcon boxSize={5} />Log in here <ChevronLeftIcon boxSize={5} />
         </Link>
       </Box>
     </Container>

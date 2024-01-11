@@ -1,38 +1,62 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Box, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 import { register } from '../../redux/auth/operations';
+import { Input, Button, FormControl, FormLabel, Box } from '@chakra-ui/react';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [userData, setUserData] = useState({ name: '', email: '', password: '' });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     dispatch(register(userData));
     setUserData({ name: '', email: '', password: '' });
   };
 
-  const handleChange = (e) => setUserData({ ...userData, [e.target.name]: e.target.value });
+  const handleChange = e => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
 
   return (
-    <Box as="form" onSubmit={handleSubmit} mx="auto" maxW="400px">
-      {['name', 'email', 'password'].map((field) => (
-        <FormControl key={field} mt="10px">
-          <FormLabel>{field === 'name' ? 'Username' : field}</FormLabel>
-          <Input
-            width="100%"
-            type={field === 'password' ? 'password' : field}
-            name={field}
-            value={userData[field]}
-            onChange={handleChange}
-          />
-        </FormControl>
-      ))}
-      <Button mt="20px" type="submit" width="100%">
+    <Box as="form" onSubmit={handleSubmit} py="4" maxW="300px">
+      <FormControl id="name">
+        <FormLabel>Username</FormLabel>
+        <Input
+          width="100%"
+          type="text"
+          name="name"
+          value={userData.name}
+          onChange={handleChange}
+          required
+        />
+      </FormControl>
+      <FormControl mt="10px" id="email">
+        <FormLabel>Email</FormLabel>
+        <Input
+          width="100%"
+          type="email"
+          name="email"
+          value={userData.email}
+          onChange={handleChange}
+          required
+        />
+      </FormControl>
+      <FormControl mt="10px" id="password">
+        <FormLabel>Password</FormLabel>
+        <Input
+          width="100%"
+          type="password"
+          name="password"
+          value={userData.password}
+          onChange={handleChange}
+          required
+        />
+      </FormControl>
+      <Button mt="20px" type="submit">
         Register
       </Button>
     </Box>
   );
 };
+
 

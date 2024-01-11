@@ -1,66 +1,58 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFilter, selectContacts } from '../../redux/contacts/selectors';
+import { fetchContacts } from '../../redux/contacts/operations';
 import {
   Text,
   IconButton,
   CloseButton,
   SimpleGrid,
-  Card,
-  CardBody,
-  CardHeader,
+  Box,
 } from '@chakra-ui/react';
-import {
-  selectFilter,
-  selectContacts,
-  selectIsLoading,
-} from '../../redux/contacts/selectors';
-import { deleteContact, fetchContacts } from '../../redux/contacts/operations';
+import { selectIsLoading } from '../../redux/contacts/selectors';
+import { deleteContact } from '../../redux/contacts/operations';
 
 const ContactList = () => {
-  const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
   const isLoading = useSelector(selectIsLoading);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const handleDeleteContact = async (id) => {
-    try {
-      await dispatch(deleteContact(id));
-    } catch (error) {
-      console.error('Error deleting contact:', error);
-    }
-  };
-
-  // Filtrowanie kontaktów na podstawie wartości filtra
   const filteredContacts = Array.isArray(contacts)
-    ? contacts.filter((contact) =>
-        contact.name.toLowerCase().includes(filter.toLowerCase())
+    ? contacts.filter(
+        contact =>
+          contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+          (contact.phone && contact.number.includes(filter))
       )
     : [];
+
+  const handleDelete = idToDelete => {
+    dispatch(deleteContact(idToDelete));
+  };
 
   return (
     <>
       {isLoading ? (
         <Text>Loading...</Text>
       ) : (
-        <SimpleGrid columns={[1, null, 2]} spacing={5} mx="auto" maxW="400px">
+        <SimpleGrid columns={3} spacing={1} overflow="hidden" width="800px">
           {filteredContacts.length > 0 ? (
             filteredContacts.map(({ id, name, number }) => (
-              <Card key={id}>
-                <CardHeader>
+              <Box
+                key={id}>
+                <Box p="1">
                   <IconButton
                     icon={<CloseButton />}
-                    onClick={() => handleDeleteContact(id)}
+                    onClick={() => handleDelete(id)}
                   />
-                </CardHeader>
-                <CardBody>
                   <Text>{name}</Text>
                   <Text>{number}</Text>
-                </CardBody>
-              </Card>
+                </Box>
+              </Box>
             ))
           ) : (
             <Text>No contacts found</Text>

@@ -8,18 +8,11 @@ export const UserMenu = () => {
   const { user } = useAuth();
 
   return (
-    <Box p="4" bg="gray.100">
-      <Text s="b" mr="5">
-        Welcome, {user.name}
+    <Box display="flex" alignItems="center">
+      <Text as="b" mr="4">
+        Welcome, {user.email}
       </Text>
-      <Button
-        variant="solid"
-        onClick={() => dispatch(logOut())}
-        mt="2"
-        bg="pink.200"
-        color="white"
-        _hover={{ bg: 'pink.600' }}
-      >
+      <Button variant="solid" onClick={() => dispatch(logOut())}>
         Logout
       </Button>
     </Box>

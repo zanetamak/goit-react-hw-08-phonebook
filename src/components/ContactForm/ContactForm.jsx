@@ -1,51 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
+import { createContact } from '../../redux/contacts/operations';
 import { selectContacts } from '../../redux/contacts/selectors';
-import { addContact } from '../../redux/contacts/operations';
-import { Box, Input, Button, FormControl, FormLabel } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Button, Box } from '@chakra-ui/react';
 
 const ContactForm = () => {
-  const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({ name: '', number: '' });
 
-  const handleAddContact = (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
-    const { name, number } = e.target.elements;
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
 
-    const trimmedName = name.value.trim();
-    const trimmedNumber = number.value.trim();
+    const newContactExists = contacts.some((contact) => contact.name === formData.name);
 
-    if (contacts.some((contact) => contact.name.toLowerCase() === trimmedName.toLowerCase())) {
-      alert(`${trimmedName} is already in contacts.`);
+    if (newContactExists) {
+      alert(`${formData.name} is in use. Try another name.`);
       return;
     }
 
-    const newContact = {
-      id: nanoid(),
-      name: trimmedName,
-      number: trimmedNumber,
-    };
-
-    dispatch(addContact(newContact));
-
-    e.target.reset();
+    dispatch(createContact(formData));
+    setFormData({ name: '', number: '' });
   };
 
   return (
-    <Box as="form" onSubmit={handleAddContact}>
-      <FormControl>
-        <FormLabel>Name</FormLabel>
-        <Input autoComplete="off" type="text" name="name" required />
+    <Box as="form" onSubmit={handleSubmit} my="10">
+      <FormControl mb="5">
+        <FormLabel htmlFor="number">Number</FormLabel>
+        <Input
+          type="tel"
+          name="number"
+          required
+          value={formData.number}
+          onChange={handleChange}
+        />
       </FormControl>
-      <FormControl>
-        <FormLabel>Number</FormLabel>
-        <Input autoComplete="off" type="tel" name="number" required />
+
+      <FormControl mb="5">
+        <FormLabel htmlFor="name">Name</FormLabel>
+        <Input
+          type="text"
+          name="name"
+          required
+          value={formData.name}
+          onChange={handleChange}
+        />
       </FormControl>
-      <Button type="submit" mt="10" colorScheme="teal">
-        Add contact
-      </Button>
+
+      <Button type="submit">Add contact</Button>
     </Box>
   );
 };

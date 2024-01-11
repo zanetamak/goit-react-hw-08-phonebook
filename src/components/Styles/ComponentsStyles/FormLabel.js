@@ -10,7 +10,7 @@ const FormLabel = defineStyleConfig({
     },
   },
   defaultProps: {
-    size: 'md',
+    size: '10',
     variant: 'custom',
   },
 });

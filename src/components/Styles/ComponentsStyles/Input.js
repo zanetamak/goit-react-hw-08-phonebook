@@ -4,7 +4,7 @@ const Input = defineStyleConfig({
   variants: {
     custom: {
       field: {
-        border: '2px solid',
+        border: '1px solid',
         borderColor: 'brand.dark',
         color: 'brand.main',
         bg: 'none',

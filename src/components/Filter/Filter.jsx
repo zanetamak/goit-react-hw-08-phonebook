@@ -1,27 +1,27 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../../redux/contacts/filterSlice';
+import { setFilter } from '../../redux/contacts/contactsSlice';
 import { selectFilter } from '../../redux/contacts/selectors';
-import { FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Input, FormControl, FormLabel } from '@chakra-ui/react';
 
 const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
 
-  const onChange = (e) => {
-    const value = e.target.value.toLowerCase();
-    dispatch(setFilter(value));
+  const handleFilterChange = e => {
+    dispatch(setFilter(e.target.value));
   };
 
   return (
-    <FormControl mt="10">
-      <FormLabel>Find contacts by name or phone number</FormLabel>
+    <FormControl id="filter" mb="5">
+      <FormLabel>Search list:</FormLabel>
       <Input
-        type="text"
+        type="search"
         name="filter"
-        value={filter} // Używanie filtra z Redux za pomocą useSelector
-        onChange={onChange}
-
+        value={filter}
+        onChange={handleFilterChange}
+        placeholder="Find contacts by name or phone number"
+        required
       />
     </FormControl>
   );

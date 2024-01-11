@@ -5,22 +5,22 @@ import { Flex, Link, Button } from '@chakra-ui/react';
 export const Navigation = () => {
   const { isLoggedIn } = useAuth();
 
- return (
+  return (
     <Flex as="nav">
-      <Link as={NavLink} to="/">
+      <Link as={NavLink} className="link" to="/">
         {({ isActive }) =>
           isActive ? (
-            <Button variant="solidActive">Home</Button>
+            <Button variant="solidActive">HOME</Button>
           ) : (
             <Button>HOME</Button>
           )
         }
       </Link>
       {isLoggedIn && (
-        <Link as={NavLink} to="/contacts" ml="16px">
+        <Link as={NavLink} className="link" to="/contacts" ml="16px">
           {({ isActive }) =>
             isActive ? (
-              <Button variant="solidActive">Contacts</Button>
+              <Button variant="solidActive">CONTACTS</Button>
             ) : (
               <Button>CONTACTS</Button>
             )

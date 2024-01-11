@@ -54,7 +54,4 @@ const App = () => {
   );
 };
 
-//  Lazy pozwala na opóźnione ładowanie komponentów. Możesz użyć do dynamicznego importowania 
-// komponentów = te komponenty będą pobrane dopiero w momencie, gdy zostaną użyte.
-
-export default App
+export default App;

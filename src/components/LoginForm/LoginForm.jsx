@@ -1,16 +1,16 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { FormControl, FormLabel, Input, Button, Box } from '@chakra-ui/react';
+
 import { logIn } from '../../redux/auth/operations';
-import {
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  Button,
-} from '@chakra-ui/react';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,20 +25,26 @@ export const LoginForm = () => {
   };
 
   return (
-    <Box maxW="300px" mx="auto" mt="10">
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <FormControl mb="10">
-          <FormLabel>Email</FormLabel>
-          <Input type="email" name="email" />
-        </FormControl>
-        <FormControl mb="10">
-          <FormLabel>Password</FormLabel>
-          <Input type="password" name="password" />
-        </FormControl>
-        <Button type="submit" colorScheme="pink">
-          Log In
-        </Button>
-      </form>
+    <Box as="form" onSubmit={handleSubmit} py="4" maxW="300px">
+      <FormControl id="email">
+        <FormLabel>Email</FormLabel>
+        <Input
+          width="100%"
+          type="email"
+          name="email" />
+      </FormControl>
+      <FormControl mt="10px" id="password">
+        <FormLabel>Password</FormLabel>
+        <Input
+          width="100%"
+          type={showPassword ? 'text' : 'password'}
+          name="password"
+          onClick={togglePasswordVisibility}
+        />
+      </FormControl>
+      <Button mt="20px" type="submit">
+        Log In
+      </Button>
     </Box>
   );
 };
