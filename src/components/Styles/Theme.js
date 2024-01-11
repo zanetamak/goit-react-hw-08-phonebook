@@ -11,7 +11,7 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: '#EBF8FF',
+        bg: 'yellow.100',
         color: '#121212',
       },
     },
